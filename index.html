@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduarda Barreto · Senior Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #0A0A0A;
+  --black2:  #111111;
+  --off:     #1C1C1C;
+  --navy:    #0A0A0A;
+  --navy2:   #111111;
+  --slate:   #2A2A2A;
+  --steel:   #4A4A4A;
+  --mist:    #888888;
+  --fog:     #BBBBBB;
+  --ice:     #F0F0F0;
+  --snow:    #F8F8F8;
+  --white:   #FFFFFF;
+  --accent:  #E8E8E8;
+  --rule:    rgba(0,0,0,.08);
+  --rule-l:  rgba(255,255,255,.08);
+  --serif:   'Syne', system-ui, sans-serif;
+  --sans:    'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--snow);
+  color: var(--navy);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 80px;
+  background: rgba(244,246,249,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, background .3s;
+}
+nav.scrolled { border-bottom-color: var(--rule); }
+.nav-name {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 800;
+  color: var(--navy); text-decoration: none;
+  letter-spacing: -.02em;
+}
+.nav-links {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 11px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--steel); text-decoration: none; transition: color .18s;
+}
+.nav-links a:hover { color: var(--navy); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100svh;
+  padding-top: 60px;
+  background: var(--black);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-ribbon {
+  border-bottom: 1px solid var(--rule-l);
+  padding: 12px 52px;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 1;
+}
+.ribbon-item {
+  font-size: 9px; font-weight: 400; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(255,255,255,.3);
+}
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 64px 80px 80px;
+  gap: 64px;
+  position: relative; z-index: 1;
+  min-height: calc(100svh - 56px - 40px);
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: clamp(52px, 6.5vw, 96px);
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--white);
+  margin-top: 0;
+  opacity: 0;
+  animation: riseIn 1.1s .1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-name em { font-style: normal; font-weight: 800; color: var(--fog); display: block; }
+
+.hero-sub {
+  margin-top: 28px;
+  display: flex; align-items: center; gap: 16px;
+  opacity: 0; animation: fadeIn .7s .7s forwards;
+}
+.hero-sub-line { width: 28px; height: 1px; background: var(--fog); flex-shrink: 0; }
+.hero-sub-text {
+  font-size: 13px; font-weight: 300; color: rgba(255,255,255,.45);
+  letter-spacing: .04em; text-transform: uppercase;
+}
+
+.hero-right {
+  opacity: 0; animation: fadeIn .9s .5s forwards;
+  display: flex; flex-direction: column; gap: 28px;
+  min-width: 0; /* prevent grid blowout */
+}
+.hero-statement {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.6;
+  letter-spacing: .01em;
+  color: rgba(255,255,255,.65);
+  border-left: 2px solid rgba(255,255,255,.2);
+  padding-left: 20px;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.htag {
+  font-size: 10px; font-weight: 400; letter-spacing: .06em;
+  color: rgba(255,255,255,.45);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 5px 13px; border-radius: 2px;
+  transition: all .18s;
+}
+.htag:hover { color: var(--white); border-color: rgba(255,255,255,.35); }
+
+.hero-bottom {
+  border-top: 1px solid var(--rule-l);
+  overflow: hidden;
+  position: relative; z-index: 1;
+}
+.ticker-track { display: flex; white-space: nowrap; animation: ticker 44s linear infinite; }
+.ti {
+  padding: 12px 36px;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.18);
+}
+.ti::before { content: '◆'; font-size: 4px; margin-right: 36px; opacity: .3; }
+
+/* ── JOURNEY SECTION ── */
+#journey {
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+.journey-head {
+  padding: 72px 80px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 24px;
+}
+.journey-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
+.journey-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 300; line-height: .92;
+  letter-spacing: -.02em; color: var(--black);
+  margin-bottom: 8px;
+}
+.journey-tabs {
+  display: flex; gap: 0;
+  margin-top: 8px;
+}
+.jtab {
+  font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--mist); padding: 14px 28px;
+  cursor: pointer; border-bottom: 2px solid transparent;
+  transition: color .18s, border-color .18s;
+  background: none; border-top: none; border-left: none; border-right: none;
+}
+.jtab:hover { color: var(--black); }
+.jtab.active { color: var(--black); border-bottom-color: var(--black); }
+
+.journey-panels { padding: 0 80px; }
+.jpanel { display: none; padding: 56px 0; }
+.jpanel.active { display: block; }
+
+/* experience cards */
+.jexp-list { display: flex; flex-direction: column; gap: 1px; }
+.jexp-item {
+  display: grid; grid-template-columns: 200px 1fr auto;
+  gap: 40px; padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.jexp-item:first-child { border-top: 1px solid var(--rule); }
+.jexp-co {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--black); letter-spacing: -.02em;
+}
+.jexp-co-label {
+  font-size: 9px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mist); margin-top: 4px;
+}
+.jexp-role { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 8px; }
+.jexp-desc { font-size: 13.5px; font-weight: 300; color: var(--steel); line-height: 1.7; }
+.jexp-period {
+  font-size: 11px; font-weight: 400; color: var(--fog);
+  letter-spacing: .04em; white-space: nowrap; padding-top: 3px;
+}
+
+/* talks */
+.jtalk-list { display: flex; flex-direction: column; gap: 1px; }
+.jtalk-item {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: center;
+}
+.jtalk-item:first-child { border-top: 1px solid var(--rule); }
+.jtalk-tag {
+  display: inline-block; font-size: 9px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--mist); background: var(--ice);
+  padding: 3px 10px; border-radius: 2px; margin-bottom: 8px;
+}
+.jtalk-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 6px; }
+.jtalk-where { font-size: 13px; font-weight: 300; color: var(--steel); }
+.jtalk-year { font-size: 11px; font-weight: 400; color: var(--fog); white-space: nowrap; }
+
+/* publications / posts */
+.jpub-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+.jpub-card {
+  background: var(--snow); border: 1px solid var(--rule);
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 14px;
+  transition: background .18s; text-decoration: none;
+}
+.jpub-card:hover { background: var(--ice); }
+.jpub-type {
+  font-size: 9px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mist);
+}
+.jpub-title { font-size: 15px; font-weight: 600; color: var(--black); line-height: 1.3; font-family: var(--serif); }
+.jpub-where { font-size: 12px; font-weight: 300; color: var(--steel); }
+.jpub-link {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--mist); margin-top: auto;
+  transition: color .16s;
+}
+.jpub-card:hover .jpub-link { color: var(--black); }
+.jpub-desc {
+  font-size: 13px; font-weight: 300; color: var(--steel); line-height: 1.65;
+}
+.jtalk-link {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--mist);
+  text-decoration: none; white-space: nowrap;
+  transition: color .16s;
+}
+.jtalk-link:hover { color: var(--black); }
+
+/* ── ABOUT ── */
+#about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+
+.about-l {
+  background: var(--ice);
+  padding: 96px 80px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-right: 1px solid var(--rule);
+}
+.about-label {
+  font-size: 9px; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--mist);
+}
+.about-title {
+  font-family: var(--serif);
+  font-size: clamp(42px, 4.8vw, 68px);
+  font-weight: 300; line-height: .95;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  margin-top: 24px;
+}
+.about-title em { font-style: italic; color: var(--steel); }
+.about-prose { margin-top: 40px; }
+.about-prose p {
+  font-size: 14.5px; font-weight: 300; line-height: 1.82;
+  color: var(--steel); margin-bottom: 16px; letter-spacing: -.01em;
+}
+.about-prose p strong { color: var(--navy); font-weight: 400; }
+
+/* spectrum chart */
+.spectrum { margin-top: 44px; }
+.spectrum-label {
+  font-size: 9px; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--mist); margin-bottom: 16px;
+}
+.spec-bars { display: flex; flex-direction: column; gap: 10px; }
+.spec-row { display: grid; grid-template-columns: 72px 1fr 30px; align-items: center; gap: 12px; }
+.spec-name { font-size: 10px; font-weight: 400; color: var(--mist); letter-spacing: .04em; text-transform: uppercase; }
+.spec-bar-wrap { height: 4px; background: rgba(14,26,43,.08); border-radius: 2px; overflow: hidden; }
+.spec-bar { height: 100%; border-radius: 2px; background: var(--navy); }
+.spec-pct { font-size: 10px; font-weight: 400; color: var(--mist); text-align: right; }
+
+.about-r {
+  padding: 96px 80px;
+  background: var(--snow);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.principle {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid; grid-template-columns: 36px 1fr;
+  gap: 16px; transition: padding-left .2s;
+}
+.principle:first-child { border-top: 1px solid var(--rule); }
+.principle:hover { padding-left: 6px; }
+.pr-n {
+  font-family: var(--serif); font-style: italic; font-size: 24px;
+  color: var(--fog); line-height: 1.2; transition: color .2s;
+}
+.principle:hover .pr-n { color: var(--steel); }
+.pr-title { font-size: 11px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--navy); margin-bottom: 5px; }
+.pr-body { font-size: 13px; font-weight: 300; line-height: 1.68; color: var(--steel); }
+
+/* ── WORK ── */
+#work { background: var(--snow); }
+
+.work-masthead {
+  padding: 72px 80px 60px;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: end;
+  border-bottom: 1px solid var(--navy);
+  background: var(--navy);
+}
+.wm-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.wm-title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 300; line-height: .9;
+  letter-spacing: -.02em; color: var(--white);
+  margin-top: 16px;
+}
+.wm-title em { font-style: italic; color: var(--fog); }
+.wm-desc {
+  font-size: 14px; font-weight: 300; color: rgba(255,255,255,.4);
+  max-width: 400px; line-height: 1.72; margin-top: 20px;
+}
+.wm-count {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(80px, 12vw, 152px);
+  color: rgba(255,255,255,.06); line-height: 1;
+  letter-spacing: -.04em; user-select: none;
+  align-self: flex-end;
+}
+
+/* project card — vertical: text top, illustration bottom */
+.pcard {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: background .22s;
+}
+.pcard.layout-A,
+.pcard.layout-B { grid-template-columns: unset; }
+.pcard:hover { background: var(--ice); }
+
+.pcard-body {
+  padding: 52px 64px 40px;
+  display: flex; flex-direction: column;
+  border-bottom: 1px solid var(--rule);
+}
+.layout-B .pcard-body { border-right: none; border-left: none; }
+
+.pcard-idx {
+  font-family: var(--serif); font-style: italic;
+  font-size: 13px; color: var(--mist);
+  letter-spacing: .04em; margin-bottom: 20px;
+}
+.pcard-cat {
+  font-size: 9px; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mist); margin-bottom: 12px;
+}
+.pcard-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 400; line-height: 1.1;
+  letter-spacing: -.02em; color: var(--navy);
+  margin-bottom: 16px;
+}
+.pcard-sum {
+  font-size: 13.5px; font-weight: 300; color: var(--steel);
+  line-height: 1.74; max-width: 460px;
+}
+.pcard-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+.pchip {
+  font-size: 9px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--mist); background: var(--ice);
+  padding: 4px 10px; border-radius: 2px; transition: all .16s;
+}
+.pcard:hover .pchip { background: var(--fog); color: var(--navy); }
+.pcard-cta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 22px;
+  font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--mist); transition: color .18s, gap .18s;
+}
+.pcard-cta .arr { transition: transform .18s; }
+.pcard:hover .pcard-cta { color: var(--navy); gap: 14px; }
+.pcard:hover .pcard-cta .arr { transform: translateX(4px); }
+
+/* illustration panel — full width, below text */
+.pcard-vis {
+  width: 100%;
+  height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 64px;
+  background: var(--snow);
+  transition: background .22s;
+  overflow: hidden;
+}
+.pcard:hover .pcard-vis { background: var(--ice); }
+.pcard-vis svg { width: 100%; height: 100%; max-height: 220px; }
+
+/* 2-column grid for project cards */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.work-grid .pcard {
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+.work-grid .pcard:nth-child(even) { border-right: none; }
+
+/* ── SKILLS ── */
+#skills {
+  background: var(--black2);
+  padding: 96px 0;
+}
+.skills-head {
+  padding: 0 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  margin-bottom: 64px;
+}
+.sk-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.28); }
+.sk-display {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.5vw, 78px);
+  font-weight: 300; line-height: .92;
+  letter-spacing: -.02em; color: var(--white);
+  margin-top: 16px;
+}
+.sk-display em { font-style: italic; color: var(--fog); }
+.sk-body {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,.38); line-height: 1.78;
+  margin-top: 20px;
+}
+.sk-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px, 2vw, 22px);
+  color: rgba(255,255,255,.24); line-height: 1.55;
+  border-left: 2px solid rgba(255,255,255,.25);
+  padding-left: 20px;
+}
+
+.skills-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.sg-col {
+  padding: 32px 28px;
+  border-right: 1px solid rgba(255,255,255,.07);
+}
+.sg-col:last-child { border-right: none; }
+.sg-head {
+  font-size: 9px; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--fog);
+  margin-bottom: 20px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.sg-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.sg-list li {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,.36); line-height: 1.3;
+  transition: color .15s; padding-left: 12px; position: relative;
+}
+.sg-list li::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255,255,255,.25);
+}
+.sg-list li:hover { color: var(--white); }
+
+.skills-foot {
+  margin-top: 52px; padding: 20px 52px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.sf-label { font-size: 9px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.2); }
+.sf-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.sfp {
+  font-size: 10px; font-weight: 400; color: rgba(255,255,255,.32);
+  border: 1px solid rgba(255,255,255,.1); padding: 5px 14px; border-radius: 2px;
+  letter-spacing: .04em; transition: all .18s;
+}
+.sfp:hover { color: var(--white); border-color: rgba(255,255,255,.3); }
+
+/* ── METHOD ── */
+#method { border-top: 1px solid var(--rule); }
+.method-head {
+  padding: 72px 80px 60px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-bottom: 1px solid var(--rule);
+  background: var(--ice);
+}
+.mh-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
+.mh-title {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6vw, 84px);
+  font-weight: 300; line-height: .9;
+  letter-spacing: -.02em; color: var(--navy);
+  margin-top: 16px;
+}
+.mh-title em { font-style: italic; }
+.mh-bignum {
+  font-family: var(--serif); font-style: italic;
+  font-size: 120px; color: rgba(14,26,43,.06);
+  line-height: .88; letter-spacing: -.04em; user-select: none;
+}
+
+.mstrip {
+  display: grid; grid-template-columns: 52px 240px 1fr 140px;
+  border-bottom: 1px solid var(--rule);
+  align-items: stretch; transition: background .2s;
+}
+.mstrip:hover { background: var(--ice); }
+.ms-i {
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--rule);
+  font-family: var(--serif); font-style: italic;
+  font-size: 16px; color: var(--mist);
+}
+.ms-head { padding: 28px 36px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: center; }
+.ms-title { font-size: 15px; font-weight: 400; color: var(--navy); letter-spacing: -.01em; margin-bottom: 4px; }
+.ms-sub { font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); }
+.ms-body { padding: 28px 36px; border-right: 1px solid var(--rule); display: flex; align-items: center; }
+.ms-body p { font-size: 13px; font-weight: 300; color: var(--steel); line-height: 1.7; }
+.ms-vis { display: flex; align-items: center; justify-content: center; padding: 16px; }
+
+/* ── EXPERIENCE ── */
+#experience {
+  background: var(--snow);
+  border-top: 1px solid var(--rule);
+  padding: 96px 80px;
+}
+.exp-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--mist); }
+.exp-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800; line-height: .92;
+  letter-spacing: -.03em; color: var(--black);
+  margin-top: 16px; margin-bottom: 64px;
+}
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.exp-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 48px 40px;
+  display: flex; flex-direction: column; gap: 28px;
+  transition: background .2s;
+}
+.exp-card:hover { background: var(--ice); }
+.exp-logo {
+  height: 36px;
+  display: flex; align-items: center;
+}
+.exp-logo svg { height: 100%; width: auto; }
+.exp-company {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 700;
+  color: var(--black); letter-spacing: -.02em;
+}
+.exp-role {
+  font-size: 11px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--mist);
+  margin-top: -16px;
+}
+.exp-period {
+  font-size: 11px; font-weight: 400; color: var(--fog);
+  letter-spacing: .04em;
+}
+.exp-desc {
+  font-size: 13.5px; font-weight: 300; line-height: 1.72;
+  color: var(--steel);
+}
+
+/* ── CONTACT ── */
+#contact {
+  border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 52vh;
+  background: var(--navy);
+}
+.contact-l {
+  padding: 88px 80px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-right: 1px solid var(--rule-l);
+}
+.contact-label { font-size: 9px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.contact-sub {
+  font-size: 15px; font-weight: 300; color: rgba(255,255,255,.42);
+  line-height: 1.8; max-width: 360px; margin-top: 20px;
+}
+.contact-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 40px; width: fit-content; }
+.cbtn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 400;
+  text-decoration: none; padding: 14px 28px; border-radius: 2px;
+  transition: all .2s;
+}
+.cb-p { background: var(--white); color: var(--navy); }
+.cb-p:hover { background: var(--ice); }
+.cb-s { background: transparent; color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.15); }
+.cb-s:hover { border-color: rgba(255,255,255,.4); color: var(--white); }
+
+.contact-r {
+  display: flex; align-items: center; justify-content: center;
+  padding: 88px 80px;
+}
+/* animated radar chart decoration */
+.contact-radar { width: 220px; height: 220px; position: relative; }
+.contact-radar svg { width: 100%; height: 100%; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 20px 52px; border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--navy);
+}
+.fl { font-size: 20px; font-family: var(--serif); font-weight: 800; color: var(--white); letter-spacing: -.02em; }
+.fr { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.3); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(244,246,249,.94);
+  backdrop-filter: blur(24px);
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+  overflow-y: auto;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  max-width: 960px; margin: 0 auto; min-height: 100%;
+  background: var(--white);
+  border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+  transform: translateY(28px);
+  transition: transform .48s cubic-bezier(.16,1,.3,1);
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-bar {
+  position: sticky; top: 0; z-index: 10;
+  height: 52px; padding: 0 80px;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mb-tag { font-size: 9px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
+.mb-close {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--mist); background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 6px; transition: color .18s;
+}
+.mb-close:hover { color: var(--navy); }
+
+.modal-hero { padding: 72px 52px 0; }
+.mh-cat { font-size: 9px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); margin-bottom: 16px; }
+.modal-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 52px);
+  font-weight: 400; line-height: 1.06;
+  letter-spacing: -.02em; color: var(--navy); margin-bottom: 44px;
+}
+.mh-grid {
+  display: grid; grid-template-columns: 1fr 220px; gap: 52px;
+  padding-bottom: 44px; border-bottom: 1px solid var(--rule);
+}
+.mh-overview p { font-size: 15px; font-weight: 300; line-height: 1.82; color: var(--steel); }
+.mh-meta { display: flex; flex-direction: column; gap: 18px; }
+.mm-label { font-size: 9px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); margin-bottom: 3px; }
+.mm-value { font-size: 13px; font-weight: 400; color: var(--navy); }
+
+.modal-body { padding: 60px 52px 100px; display: flex; flex-direction: column; gap: 52px; }
+.ms-section p { font-size: 15px; font-weight: 300; line-height: 1.82; color: var(--steel); }
+.ms-section p strong { color: var(--navy); font-weight: 400; }
+.ms-label {
+  font-size: 9px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--mist); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ms-label::after { content: ''; width: 36px; height: 1px; background: var(--rule); }
+
+.modal-pullquote { padding: 36px 44px; background: var(--navy); border-radius: 2px; }
+.modal-pullquote p {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(17px, 2vw, 23px);
+  color: var(--white); line-height: 1.52; letter-spacing: .01em;
+}
+.modal-pullquote cite {
+  display: block; margin-top: 12px; font-size: 9px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.28); font-style: normal;
+}
+
+.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.ins-tile { background: var(--ice); padding: 24px; border-radius: 2px; border-left: 3px solid var(--fog); }
+.ins-tile p { font-size: 13.5px; font-weight: 300; line-height: 1.65; color: var(--navy); }
+
+.impact-rows { margin-top: 14px; }
+.imp-row {
+  display: grid; grid-template-columns: 16px 1fr; gap: 12px;
+  padding: 13px 0; border-bottom: 1px solid var(--rule); align-items: baseline;
+}
+.imp-row:last-child { border-bottom: none; }
+.imp-arr { font-size: 11px; color: var(--steel); }
+.imp-row p { font-size: 14px; font-weight: 300; color: var(--steel); line-height: 1.65; }
+
+.modal-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.mchip {
+  font-size: 9px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--steel); background: var(--ice); padding: 4px 10px; border-radius: 2px;
+}
+
+/* ── SCROLL REVEAL ── */
+.rv { opacity:0; transform:translateY(14px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.rv.vs { opacity:1; transform:translateY(0); }
+.d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+
+/* ── ANIMATIONS ── */
+@keyframes riseIn  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+@keyframes ticker  { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes pulse   { 0%,100%{opacity:.4} 50%{opacity:.9} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  #about{grid-template-columns:1fr}
+  .hero-main{grid-template-columns:1fr;gap:40px;padding:48px 64px 64px}
+  .hero-name{font-size:clamp(52px,8vw,88px)}
+  .work-grid{grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:1fr}
+  .pcard-vis{min-height:240px}
+  .layout-B .pcard-body{border-left:none;border-right:none}
+  .skills-grid{grid-template-columns:repeat(3,1fr)}
+  #contact{grid-template-columns:1fr}
+  .mstrip{grid-template-columns:48px 1fr}
+  .ms-body,.ms-vis{display:none}
+}
+@media(max-width:768px){
+  nav{padding:0 28px} .nav-links{display:none}
+  .hero-main{grid-template-columns:1fr;padding:40px 28px 52px;gap:32px}
+  .hero-name{font-size:clamp(44px,10vw,72px)}
+  .hero-ribbon{padding:11px 24px}
+  .work-masthead{padding:44px 28px 36px}
+  .method-head{padding:44px 28px 36px}
+  .skills-head{grid-template-columns:1fr;padding:0 28px;gap:36px}
+  .skills-grid{padding:0 28px;grid-template-columns:1fr 1fr}
+  .skills-foot{padding:20px 28px}
+  .about-l,.about-r{padding:64px 28px}
+  .contact-l{padding:64px 28px}
+  .pcard-body{padding:36px 28px}
+  .modal-hero{padding:44px 28px 0}
+  .modal-body{padding:44px 28px 80px;gap:40px}
+  .modal-bar{padding:0 28px}
+  .insights-grid{grid-template-columns:1fr}
+  .mh-grid{grid-template-columns:1fr}
+  footer{padding:18px 24px;flex-direction:column;gap:6px;text-align:center}
+  .journey-head{padding:48px 28px 0}
+  .journey-panels{padding:0 28px}
+  .jexp-item{grid-template-columns:1fr;gap:8px}
+  .jexp-period{text-align:left}
+  .jtalk-item{grid-template-columns:1fr;gap:8px}
+  .jpub-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){ .skills-grid{grid-template-columns:1fr} }
+</style>
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-name">Eduarda</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+
+
+  <div class="hero-main">
+    <div>
+      <h1 class="hero-name">Eduarda<em>Barreto</em></h1>
+      <div class="hero-sub">
+        <div class="hero-sub-line"></div>
+        <p class="hero-sub-text">Quantitative Behavioral Research · Mixed Methods · Experience Strategy</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-statement">
+        I study how people form trust, make decisions, and navigate complexity, connecting behavioral signal to product strategy through rigorous quantitative and mixed-methods research.
+      </p>
+      <div class="hero-tags">
+        <span class="htag">Quantitative Research</span>
+        <span class="htag">Mixed Methods</span>
+        <span class="htag">Behavioral Measurement</span>
+        <span class="htag">Consumer Behavior</span>
+        <span class="htag">ResearchOps</span>
+        <span class="htag">AI for Research</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="ticker-track">
+      <span class="ti">Quantitative Research</span><span class="ti">Behavioral Measurement</span><span class="ti">Driver Analysis</span><span class="ti">Experience Metrics</span><span class="ti">Longitudinal Tracking</span><span class="ti">NPS Intelligence</span><span class="ti">Verbatim Mining</span><span class="ti">Behavioral Clustering</span><span class="ti">Mixed Methods Design</span><span class="ti">Affinity Synthesis</span><span class="ti">Knowledge Architecture</span><span class="ti">Research Democratization</span>
+      <span class="ti">Quantitative Research</span><span class="ti">Behavioral Measurement</span><span class="ti">Driver Analysis</span><span class="ti">Experience Metrics</span><span class="ti">Longitudinal Tracking</span><span class="ti">NPS Intelligence</span><span class="ti">Verbatim Mining</span><span class="ti">Behavioral Clustering</span><span class="ti">Mixed Methods Design</span><span class="ti">Affinity Synthesis</span><span class="ti">Knowledge Architecture</span><span class="ti">Research Democratization</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-l rv">
+    <div>
+      <p class="about-label">01 · About</p>
+      <h2 class="about-title">Research as<br><em>Strategic</em><br>Infrastructure</h2>
+      <div class="about-prose">
+        <p>I work at the intersection of <strong>quantitative behavioral research, mixed methods design, and product strategy</strong> with experience across digital products, financial services, and tech organizations.</p>
+        <p>My practice spans longitudinal experience tracking, behavioral driver analysis, attitudinal research, and generative qualitative work. The thread running through all of it: <strong>connecting measurable human behavior to organizational decisions</strong> in ways that hold up under scrutiny.</p>
+        <p>More recently I've been building at the frontier of <strong>AI-augmented research operations</strong>, designing knowledge architectures, LLM prompting frameworks, and synthetic persona methodologies that expand research capacity without sacrificing epistemic rigor.</p>
+      </div>
+    </div>
+    <div class="spectrum">
+      <p class="spectrum-label">Research program scope</p>
+      <div class="spec-bars">
+        <div class="spec-row"><span class="spec-name">Quant</span><div class="spec-bar-wrap"><div class="spec-bar" style="width:88%"></div></div><span class="spec-pct">88%</span></div>
+        <div class="spec-row"><span class="spec-name">Qual</span><div class="spec-bar-wrap"><div class="spec-bar" style="width:72%;opacity:.7"></div></div><span class="spec-pct">72%</span></div>
+        <div class="spec-row"><span class="spec-name">Mixed</span><div class="spec-bar-wrap"><div class="spec-bar" style="width:80%;opacity:.8"></div></div><span class="spec-pct">80%</span></div>
+        <div class="spec-row"><span class="spec-name">Strategy</span><div class="spec-bar-wrap"><div class="spec-bar" style="width:65%;opacity:.6"></div></div><span class="spec-pct">65%</span></div>
+        <div class="spec-row"><span class="spec-name">AI · Ops</span><div class="spec-bar-wrap"><div class="spec-bar" style="width:55%;opacity:.55"></div></div><span class="spec-pct">55%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="about-r rv d1">
+    <p class="about-label">Core Principles</p>
+    <div style="margin-top:24px">
+      <div class="principle"><span class="pr-n">1</span><div><p class="pr-title">Sensemaking over Reporting</p><p class="pr-body">Research succeeds when it restructures the questions a team asks, not just when it answers the ones they had. The deliverable is organizational understanding, not a document.</p></div></div>
+      <div class="principle"><span class="pr-n">2</span><div><p class="pr-title">Attitudinal + Behavioral Triangulation</p><p class="pr-body">Stated preferences and observed behavior frequently diverge. That gap, between what people say, do, and mean, is where the most consequential insights live.</p></div></div>
+      <div class="principle"><span class="pr-n">3</span><div><p class="pr-title">Research as Organizational Memory</p><p class="pr-body">Findings compound when they are findable. Knowledge architecture, behavioral taxonomies, and synthesis standards are infrastructure investments that pay returns over time.</p></div></div>
+      <div class="principle"><span class="pr-n">4</span><div><p class="pr-title">Upstream Positioning</p><p class="pr-body">Research positioned at validation arrives too late to shape the question. The highest-leverage entry point is upstream, at hypothesis formation and opportunity definition.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="journey-head">
+    <div>
+      <p class="journey-label">01.5 · Journey</p>
+      <h2 class="journey-title">Experience,<br>Talks & Work</h2>
+    </div>
+    <div class="journey-tabs">
+      <button class="jtab active" onclick="showTab('exp')">Experience</button>
+      <button class="jtab" onclick="showTab('talks')">Talks & Events</button>
+      <button class="jtab" onclick="showTab('pubs')">Posts & Projects</button>
+    </div>
+  </div>
+
+  <div class="journey-panels">
+
+    <!-- EXPERIENCE TAB -->
+    <div id="tab-exp" class="jpanel active">
+      <div class="jexp-list">
+        <div class="jexp-item">
+          <div>
+            <p class="jexp-co">Nubank</p>
+            <p class="jexp-co-label">São Paulo, Brazil</p>
+          </div>
+          <div>
+            <p class="jexp-role">Senior Researcher · Secured Lending</p>
+            <p class="jexp-desc">Leading quantitative and mixed-methods research across secured lending products. Focus on behavioral measurement, consumer decision-making, trust formation, and research operations infrastructure.</p>
+          </div>
+          <p class="jexp-period">2020 — Present</p>
+        </div>
+        <div class="jexp-item">
+          <div>
+            <p class="jexp-co">Núclea</p>
+            <p class="jexp-co-label">São Paulo, Brazil</p>
+          </div>
+          <div>
+            <p class="jexp-role">Designer & Communications</p>
+            <p class="jexp-desc">Developed internal communication systems and visual identity materials, building early skills in translating complex information into clear, accessible formats — a foundation that later informed how I structure research deliverables and insight communication for non-specialist audiences.</p>
+          </div>
+          <p class="jexp-period">2020</p>
+        </div>
+        <div class="jexp-item">
+          <div>
+            <p class="jexp-co">IBM</p>
+            <p class="jexp-co-label">São Paulo, Brazil</p>
+          </div>
+          <div>
+            <p class="jexp-role">Bank Operations Intern</p>
+            <p class="jexp-desc">Worked directly within financial operations, developing firsthand familiarity with the systems, processes, and friction points that shape the daily experience of bank customers and employees — context that continues to inform how I frame research questions in financial services.</p>
+          </div>
+          <p class="jexp-period">2019 — 2020</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TALKS TAB -->
+    <div id="tab-talks" class="jpanel">
+      <div class="jtalk-list">
+        <div class="jtalk-item">
+          <div>
+            <span class="jtalk-tag">Talk</span>
+            <p class="jtalk-title">Research in Product Development</p>
+            <p class="jtalk-where">USP · FEA — Marketing II: Value Creation, Communication & Delivery · São Paulo, 2024</p>
+          </div>
+          <a href="#" onclick="alert('FEA-USP declaration available upon request.')" class="jtalk-year jtalk-link">View declaration →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTS & PROJECTS TAB -->
+    <div id="tab-pubs" class="jpanel">
+      <div class="jpub-grid">
+        <a href="https://agemt.pucsp.br/noticias/credito-facil-divida-certa-o-avanco-silencioso-do-superendividamento-juvenil" target="_blank" class="jpub-card">
+          <p class="jpub-type">Interview</p>
+          <p class="jpub-title">Youth Over-indebtedness</p>
+          <p class="jpub-where">PUC-SP · 2024</p>
+          <p class="jpub-desc">Interviewed on the rise of youth over-indebtedness in Brazil, sharing perspectives on the social and structural impacts of young people's access to credit.</p>
+          <p class="jpub-link">Read article →</p>
+        </a>
+        <a href="https://istoedinheiro.com.br/nubank-habilita-novo-consignado-privado" target="_blank" class="jpub-card">
+          <p class="jpub-type">Product Research</p>
+          <p class="jpub-title">Private Payroll · New Product Study</p>
+          <p class="jpub-where">Nubank · IstoÉ Dinheiro</p>
+          <p class="jpub-desc">Research conducted to understand the needs of formally employed workers, informing the development of an accessible and competitive payroll lending solution.</p>
+          <p class="jpub-link">Read coverage →</p>
+        </a>
+        <a href="https://einvestidor.estadao.com.br/educacao-financeira/pesquisa-nubank-mastercard-inclusao-financeira/" target="_blank" class="jpub-card">
+          <p class="jpub-type">Research Study</p>
+          <p class="jpub-title">Financial Inclusion in Brazil</p>
+          <p class="jpub-where">Nubank × Mastercard · Estadão</p>
+          <p class="jpub-desc">Study highlighting the growing financial inclusion in Brazil, with Nubank as the base of the research, conducted in partnership with Mastercard.</p>
+          <p class="jpub-link">Read study →</p>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-masthead rv">
+    <div>
+      <p class="wm-label">02 · Selected Work</p>
+      <h2 class="wm-title">Six Case<br><em>Studies</em></h2>
+      <p class="wm-desc">Quantitative behavioral research, mixed methods programs, and strategic synthesis across experience metrics, trust measurement, AI-augmented operations, and consumer behavior.</p>
+    </div>
+    <div class="wm-count">06</div>
+  </div>
+
+  <!-- 01 · Trust topology — flow/journey infographic -->
+  <div class="work-grid">
+  <div class="pcard rv" onclick="openModal(0)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">01 of 06</p>
+        <p class="pcard-cat">Qualitative Research · Decision-Making</p>
+        <h3 class="pcard-title">Mapping the Trust Topology of Secured Lending Journeys</h3>
+        <p class="pcard-sum">A generative study examining the cognitive and attitudinal barriers driving abandonment in secured credit flows, quantifying the divergence between stated intent and observed behavior at moments of high perceived financial risk.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Depth Interviews</span><span class="pchip">Think-Aloud Usability</span><span class="pchip">Behavioral Analysis</span><span class="pchip">Affinity Synthesis</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <!-- Journey map with trust curve, friction zones, drop-off markers -->
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- background grid -->
+        <line x1="40" y1="20" x2="40" y2="220" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/>
+        <line x1="40" y1="220" x2="420" y2="220" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/>
+        <line x1="40" y1="120" x2="420" y2="120" stroke="#BBBBBB" stroke-opacity=".08" stroke-dasharray="4 4" stroke-width=".5"/>
+        <!-- axis labels -->
+        <text x="36" y="24" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".6">HIGH</text>
+        <text x="36" y="124" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".4">MID</text>
+        <text x="36" y="222" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".4">LOW</text>
+        <text x="36" y="240" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".35" transform="rotate(-90,10,160)">TRUST</text>
+        <!-- journey stages -->
+        <text x="80" y="238" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Awareness</text>
+        <text x="160" y="238" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Entry</text>
+        <text x="240" y="238" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Simulation</text>
+        <text x="320" y="238" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Offer</text>
+        <text x="400" y="238" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Commit</text>
+        <!-- trust curve -->
+        <path d="M80 140 C110 130 130 110 160 105 C190 100 210 150 240 155 C270 160 290 80 320 60 C340 48 360 90 400 45" stroke="#0A0A0A" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- shaded area under curve -->
+        <path d="M80 140 C110 130 130 110 160 105 C190 100 210 150 240 155 C270 160 290 80 320 60 C340 48 360 90 400 45 L400 220 L80 220 Z" fill="#0A0A0A" fill-opacity=".04"/>
+        <!-- friction zone 1 -->
+        <rect x="218" y="40" width="44" height="180" fill="#333333" fill-opacity=".06" rx="2"/>
+        <text x="240" y="36" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500" opacity=".7">FRICTION</text>
+        <!-- friction zone 2 -->
+        <rect x="298" y="40" width="44" height="180" fill="#333333" fill-opacity=".04" rx="2"/>
+        <!-- drop-off marker 1 -->
+        <circle cx="240" cy="155" r="10" stroke="#444444" stroke-width="1.2" fill="white"/>
+        <text x="240" y="159" font-size="8" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500">!</text>
+        <text x="255" y="175" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" opacity=".8">High exit</text>
+        <!-- drop-off marker 2 -->
+        <circle cx="320" cy="60" r="8" stroke="#444444" stroke-width="1.2" fill="white"/>
+        <text x="320" y="64" font-size="8" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500">!</text>
+        <text x="334" y="78" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" opacity=".8">Key drop-off</text>
+        <!-- key nodes -->
+        <circle cx="80" cy="140" r="5" fill="#0A0A0A" fill-opacity=".3"/>
+        <circle cx="160" cy="105" r="5" fill="#0A0A0A" fill-opacity=".4"/>
+        <circle cx="400" cy="45" r="6" fill="#0A0A0A" fill-opacity=".6"/>
+        <!-- legend -->
+        <rect x="44" y="8" width="8" height="2" fill="#0A0A0A" fill-opacity=".5" rx="1"/>
+        <text x="56" y="13" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".6">Trust level</text>
+        <rect x="110" y="8" width="8" height="8" fill="#333333" fill-opacity=".2" rx="1"/>
+        <text x="122" y="13" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".6">Friction zone</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 02 · NPS system — bar charts + driver analysis -->
+  <div class="pcard rv" onclick="openModal(1)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">02 of 06</p>
+        <p class="pcard-cat">Quantitative Behavioral Research · Experience Metrics</p>
+        <h3 class="pcard-title">Building an Experience Intelligence System from NPS and CSAT Signal</h3>
+        <p class="pcard-sum">Rebuilt a fragmented satisfaction-metric practice into a connected quantitative intelligence program, linking longitudinal NPS signal to behavioral data and journey-level driver analysis, enabling teams to move from score-watching to evidence-based hypothesis generation.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Driver Analysis</span><span class="pchip">Longitudinal NPS</span><span class="pchip">Verbatim Mining</span><span class="pchip">Behavioral Clustering</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <!-- NPS driver analysis: horizontal bar chart + gauge -->
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="18" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" letter-spacing="1.5" opacity=".5">NPS DRIVER ANALYSIS</text>
+        <path d="M140 170 a80 80 0 0 1 160 0" stroke="#E8EDF3" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M140 170 a80 80 0 0 1 138 -40" stroke="#0A0A0A" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <text x="220" y="158" font-size="9" fill="#555555" font-family="Plus Jakarta Sans" letter-spacing="1" text-anchor="middle" opacity=".5">NPS SCORE</text>
+        <text x="220" y="182" font-family="Syne" font-size="32" font-style="italic" fill="#0A0A0A" text-anchor="middle" opacity=".8">+XX</text>
+        <text x="44" y="218" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".5">Key drivers</text>
+        <text x="44" y="232" font-size="7.5" fill="#333333" font-family="Plus Jakarta Sans">Communication clarity</text>
+        <rect x="44" y="235" width="260" height="5" fill="#E8EDF3" rx="2"/>
+        <rect x="44" y="235" width="221" height="5" fill="#0A0A0A" rx="2" opacity=".7"/>
+        <text x="310" y="241" font-size="7" fill="#555555" font-family="Plus Jakarta Sans">High</text>
+        <text x="44" y="250" font-size="7.5" fill="#333333" font-family="Plus Jakarta Sans">Trust perception</text>
+        <rect x="44" y="253" width="260" height="5" fill="#E8EDF3" rx="2"/>
+        <rect x="44" y="253" width="182" height="5" fill="#0A0A0A" rx="2" opacity=".55"/>
+        <text x="310" y="259" font-size="7" fill="#555555" font-family="Plus Jakarta Sans">Strong</text>
+        <circle cx="340" cy="70" r="32" fill="#0A0A0A" fill-opacity=".05" stroke="#BBBBBB" stroke-width=".5"/>
+        <text x="340" y="68" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".7">Process</text>
+        <text x="340" y="79" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".7">clarity</text>
+        <circle cx="390" cy="120" r="22" fill="#0A0A0A" fill-opacity=".04" stroke="#BBBBBB" stroke-width=".5"/>
+        <text x="390" y="124" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".6">Speed</text>
+        <circle cx="300" cy="120" r="26" fill="#333333" fill-opacity=".08" stroke="#444444" stroke-width=".5"/>
+        <text x="300" y="118" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".8">Trust</text>
+        <text x="300" y="129" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".8">signals</text>
+        <circle cx="365" cy="155" r="18" fill="#0A0A0A" fill-opacity=".04" stroke="#BBBBBB" stroke-width=".5"/>
+        <text x="365" y="159" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">Info</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 03 · Knowledge architecture — node diagram -->
+  <div class="pcard rv" onclick="openModal(2)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">03 of 06</p>
+        <p class="pcard-cat">AI for Research · Knowledge Architecture</p>
+        <h3 class="pcard-title">Designing a Scalable Research Knowledge Architecture with AI and Synthetic Personas</h3>
+        <p class="pcard-sum">Addressed the institutional knowledge problem endemic to high-velocity research organizations, building a behavioral-first insight taxonomy, LLM-powered retrieval frameworks, and governed synthetic persona methodology that enables research reuse without sacrificing epistemic integrity.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Knowledge Architecture</span><span class="pchip">LLM Frameworks</span><span class="pchip">Research Taxonomy</span><span class="pchip">Synthetic Personas</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <!-- Knowledge ecosystem: layered node network -->
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="16" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" letter-spacing="1.5" opacity=".5">KNOWLEDGE ECOSYSTEM</text>
+        <!-- outer ring nodes -->
+        <circle cx="220" cy="130" r="44" stroke="#BBBBBB" stroke-width=".5" fill="none" stroke-opacity=".2" stroke-dasharray="3 5"/>
+        <circle cx="220" cy="130" r="72" stroke="#BBBBBB" stroke-width=".5" fill="none" stroke-opacity=".12" stroke-dasharray="2 7"/>
+        <circle cx="220" cy="130" r="100" stroke="#BBBBBB" stroke-width=".5" fill="none" stroke-opacity=".07" stroke-dasharray="1 9"/>
+        <!-- center -->
+        <circle cx="220" cy="130" r="22" fill="#0A0A0A" fill-opacity=".08" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="220" y="127" font-size="7.5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500" opacity=".7">Behavioral</text>
+        <text x="220" y="138" font-size="7.5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500" opacity=".7">Taxonomy</text>
+        <!-- ring 1 nodes + connections -->
+        <line x1="220" y1="86" x2="220" y2="108" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".25"/>
+        <circle cx="220" cy="78" r="14" fill="#333333" fill-opacity=".12" stroke="#444444" stroke-width=".8"/>
+        <text x="220" y="82" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Retrieval</text>
+
+        <line x1="262" y1="108" x2="248" y2="118" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".25"/>
+        <circle cx="270" cy="104" r="14" fill="#0A0A0A" fill-opacity=".06" stroke="#BBBBBB" stroke-width=".6"/>
+        <text x="270" y="108" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Synthesis</text>
+
+        <line x1="178" y1="108" x2="192" y2="118" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".25"/>
+        <circle cx="170" cy="104" r="14" fill="#0A0A0A" fill-opacity=".06" stroke="#BBBBBB" stroke-width=".6"/>
+        <text x="170" y="108" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Personas</text>
+
+        <line x1="220" y1="174" x2="220" y2="152" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".25"/>
+        <circle cx="220" cy="182" r="14" fill="#0A0A0A" fill-opacity=".06" stroke="#BBBBBB" stroke-width=".6"/>
+        <text x="220" y="186" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Storage</text>
+
+        <!-- ring 2 nodes -->
+        <circle cx="148" cy="58" r="11" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4"/>
+        <text x="148" y="62" font-size="6.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">LLM</text>
+        <line x1="158" y1="65" x2="180" y2="92" stroke="#BBBBBB" stroke-width=".4" stroke-opacity=".15" stroke-dasharray="3 3"/>
+
+        <circle cx="292" cy="58" r="11" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4"/>
+        <text x="292" y="62" font-size="6.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Tags</text>
+        <line x1="282" y1="65" x2="260" y2="92" stroke="#BBBBBB" stroke-width=".4" stroke-opacity=".15" stroke-dasharray="3 3"/>
+
+        <circle cx="320" cy="166" r="11" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4"/>
+        <text x="320" y="170" font-size="6.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Index</text>
+        <line x1="310" y1="162" x2="282" y2="148" stroke="#BBBBBB" stroke-width=".4" stroke-opacity=".15" stroke-dasharray="3 3"/>
+
+        <circle cx="120" cy="166" r="11" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4"/>
+        <text x="120" y="170" font-size="6.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Query</text>
+        <line x1="130" y1="162" x2="158" y2="148" stroke="#BBBBBB" stroke-width=".4" stroke-opacity=".15" stroke-dasharray="3 3"/>
+
+        <!-- legend -->
+        <circle cx="48" cy="235" r="5" fill="#333333" fill-opacity=".3" stroke="#444444" stroke-width=".6"/>
+        <text x="58" y="239" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".6">Primary layer</text>
+        <circle cx="130" cy="235" r="5" fill="#0A0A0A" fill-opacity=".08" stroke="#BBBBBB" stroke-width=".6"/>
+        <text x="140" y="239" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".6">Secondary</text>
+        <circle cx="212" cy="235" r="5" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5"/>
+        <text x="222" y="239" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".6">Tooling</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 04 · Consumer segments — scatter / bubble chart -->
+  <div class="pcard rv" onclick="openModal(3)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">04 of 06</p>
+        <p class="pcard-cat">Consumer Behavior · Attitudinal Segmentation</p>
+        <h3 class="pcard-title">Financial Trust Formation Across Mass Market Consumer Segments</h3>
+        <p class="pcard-sum">A behavioral segmentation study mapping how mass market consumers form, sustain, and erode trust in financial institutions, measuring the attitudinal and affective mechanisms underlying product adoption across distinct socioeconomic cohorts.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Attitudinal Segmentation</span><span class="pchip">Cross-Segment Analysis</span><span class="pchip">Generative Interviews</span><span class="pchip">Concept Testing</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="16" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" letter-spacing="1.5" opacity=".5">ATTITUDINAL SEGMENTATION</text>
+        <line x1="52" y1="28" x2="52" y2="210" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".8"/>
+        <line x1="52" y1="210" x2="420" y2="210" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".8"/>
+        <line x1="48" y1="60" x2="56" y2="60" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".5"/>
+        <line x1="48" y1="90" x2="56" y2="90" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".5"/>
+        <line x1="48" y1="120" x2="56" y2="120" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".5"/>
+        <line x1="48" y1="150" x2="56" y2="150" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".5"/>
+        <line x1="48" y1="180" x2="56" y2="180" stroke="#BBBBBB" stroke-opacity=".2" stroke-width=".5"/>
+        <line x1="52" y1="120" x2="420" y2="120" stroke="#BBBBBB" stroke-opacity=".07" stroke-dasharray="3 5" stroke-width=".5"/>
+        <text x="44" y="32" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".6">HIGH</text>
+        <text x="44" y="213" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".4">LOW</text>
+        <text x="220" y="228" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">INCOME RANGE →</text>
+        <text x="28" y="130" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5" transform="rotate(-90,28,130)">TRUST LEVEL →</text>
+        <circle cx="120" cy="168" r="34" fill="#0A0A0A" fill-opacity=".05" stroke="#BBBBBB" stroke-width="1"/>
+        <text x="120" y="163" font-size="8.5" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="400">Low Income</text>
+        <text x="120" y="175" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle">Predictability</text>
+        <circle cx="230" cy="108" r="44" fill="#333333" fill-opacity=".07" stroke="#444444" stroke-width="1"/>
+        <text x="230" y="104" font-size="8.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="400">Mid Market</text>
+        <text x="230" y="116" font-size="7" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".8">Progress + Trust</text>
+        <circle cx="354" cy="60" r="26" fill="#0A0A0A" fill-opacity=".06" stroke="#0A0A0A" stroke-width=".8" stroke-opacity=".35"/>
+        <text x="354" y="57" font-size="8.5" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="400">Emerging</text>
+        <text x="354" y="69" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle">Growth</text>
+        <text x="48" y="250" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".5">Multi-cohort longitudinal study across income segments</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 05 · Experience principles — nested framework diagram -->
+  <div class="pcard rv" onclick="openModal(4)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">05 of 06</p>
+        <p class="pcard-cat">Behavioral Research · Experience Principles</p>
+        <h3 class="pcard-title">Defining Behaviorally-Grounded Experience Principles for a Digital Financial Ecosystem</h3>
+        <p class="pcard-sum">A cross-product research synthesis translating quantitative and qualitative behavioral evidence into durable experience principles, giving distributed product, design, and content teams a shared, empirically-grounded vocabulary for experience quality measurement.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Cross-Product Synthesis</span><span class="pchip">Affinity Mapping</span><span class="pchip">Principle Development</span><span class="pchip">Executive Alignment</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <!-- Concentric principle framework -->
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="16" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" letter-spacing="1.5" opacity=".5">EXPERIENCE FRAMEWORK</text>
+        <!-- concentric rectangles -->
+        <rect x="170" y="94" width="100" height="72" fill="#0A0A0A" fill-opacity=".1" stroke="#0A0A0A" stroke-width="1.4" rx="2"/>
+        <rect x="136" y="72" width="168" height="116" fill="#0A0A0A" fill-opacity=".04" stroke="#BBBBBB" stroke-width=".8" rx="3"/>
+        <rect x="100" y="50" width="240" height="160" fill="none" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4" rx="4"/>
+        <rect x="64" y="28" width="312" height="204" fill="none" stroke="#BBBBBB" stroke-width=".3" stroke-opacity=".2" rx="5"/>
+        <!-- core label -->
+        <text x="220" y="127" font-size="11" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500" letter-spacing=".5" opacity=".8">TRUST</text>
+        <text x="220" y="143" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">core principle</text>
+        <!-- ring labels -->
+        <text x="220" y="68" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">CLARITY</text>
+        <text x="220" y="202" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">AGENCY</text>
+        <text x="96" y="132" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">CON-<tspan x="96" dy="10">TROL</tspan></text>
+        <text x="344" y="132" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".55">SIMPLI-<tspan x="344" dy="10">CITY</tspan></text>
+        <!-- outer labels -->
+        <text x="220" y="44" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">Information density</text>
+        <text x="220" y="240" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">Self-efficacy signals</text>
+        <text x="78" y="132" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".35" transform="rotate(-90,78,132)">Predictability</text>
+        <text x="362" y="132" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".35" transform="rotate(90,362,132)">Cognitive load</text>
+        <!-- corner markers -->
+        <circle cx="170" cy="94" r="3" fill="#333333" fill-opacity=".6"/>
+        <circle cx="270" cy="94" r="3" fill="#333333" fill-opacity=".6"/>
+        <circle cx="170" cy="166" r="3" fill="#333333" fill-opacity=".6"/>
+        <circle cx="270" cy="166" r="3" fill="#333333" fill-opacity=".6"/>
+        <!-- data note -->
+        <text x="220" y="255" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">4 principles · adopted across 6 product squads</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 06 · ResearchOps — maturity + flow infographic -->
+  <div class="pcard rv" onclick="openModal(5)">
+    <div class="pcard-body">
+      <div>
+        <p class="pcard-idx">06 of 06</p>
+        <p class="pcard-cat">Research Operations · Organizational Design</p>
+        <h3 class="pcard-title">Scaling Research Infrastructure Across a Multi-Squad Product Organization</h3>
+        <p class="pcard-sum">Addressed operational debt in a rapidly scaling research function, designing knowledge governance frameworks, insight taxonomies, synthesis standards, and cross-functional rituals that measurably increase research velocity without eroding analytical depth.</p>
+      </div>
+      <div>
+        <div class="pcard-chips"><span class="pchip">Operational Mapping</span><span class="pchip">Insight Taxonomy</span><span class="pchip">Governance Design</span><span class="pchip">Synthesis Standards</span></div>
+        <p class="pcard-cta">Read case study <span class="arr">→</span></p>
+      </div>
+    </div>
+    <div class="pcard-vis">
+      <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="220" y="16" font-size="8" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" letter-spacing="1.5" opacity=".5">RESEARCH OPS MATURITY MODEL</text>
+        <rect x="44" y="176" width="60" height="24" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4" rx="1"/>
+        <text x="74" y="192" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Ad hoc</text>
+        <rect x="44" y="148" width="60" height="28" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".4" rx="1"/>
+        <text x="74" y="166" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Defined</text>
+        <rect x="44" y="114" width="60" height="34" fill="#B8C8D8" stroke="#BBBBBB" stroke-width=".8" stroke-opacity=".6" rx="1" fill-opacity=".5"/>
+        <text x="74" y="135" font-size="7.5" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle">Scaled</text>
+        <rect x="44" y="74" width="60" height="40" fill="#555555" fill-opacity=".2" stroke="#888888" stroke-width=".8" rx="1"/>
+        <text x="74" y="98" font-size="7.5" fill="#333333" font-family="Plus Jakarta Sans" text-anchor="middle">Strategic</text>
+        <rect x="44" y="28" width="60" height="46" fill="#0A0A0A" fill-opacity=".14" stroke="#0A0A0A" stroke-width="1.2" rx="1"/>
+        <text x="74" y="54" font-size="7.5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500">Compound</text>
+        <rect x="116" y="190" width="280" height="6" fill="#E8EDF3" rx="3"/>
+        <rect x="116" y="190" width="204" height="6" fill="#0A0A0A" rx="3" opacity=".6"/>
+        <circle cx="320" cy="193" r="7" fill="#0A0A0A" opacity=".7"/>
+        <text x="320" y="197" font-size="7" fill="white" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500">→</text>
+        <text x="116" y="208" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" opacity=".5">Baseline</text>
+        <text x="396" y="208" font-size="7" fill="#888888" font-family="Plus Jakarta Sans" text-anchor="end" opacity=".5">Target</text>
+        <rect x="148" y="40" width="56" height="30" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".5" rx="2"/>
+        <text x="176" y="57" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Study</text>
+        <polygon points="204,55 216,50 216,60" fill="#888888" fill-opacity=".4"/>
+        <rect x="216" y="40" width="56" height="30" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".5" rx="2"/>
+        <text x="244" y="57" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Field</text>
+        <polygon points="272,55 284,50 284,60" fill="#888888" fill-opacity=".4"/>
+        <rect x="284" y="40" width="60" height="30" fill="#0A0A0A" fill-opacity=".1" stroke="#0A0A0A" stroke-width="1" rx="2"/>
+        <text x="314" y="57" font-size="7.5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" font-weight="500">Synthesis</text>
+        <polygon points="344,55 356,50 356,60" fill="#888888" fill-opacity=".4"/>
+        <rect x="356" y="40" width="60" height="30" fill="#E8EDF3" stroke="#BBBBBB" stroke-width=".6" stroke-opacity=".5" rx="2"/>
+        <text x="386" y="57" font-size="7.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle">Repository</text>
+        <text x="148" y="100" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".5">Before</text>
+        <rect x="148" y="104" width="248" height="5" fill="#E8EDF3" rx="2"/>
+        <rect x="148" y="104" width="104" height="5" fill="#888888" rx="2" opacity=".4"/>
+        <text x="148" y="126" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".5">After</text>
+        <rect x="148" y="130" width="248" height="5" fill="#E8EDF3" rx="2"/>
+        <rect x="148" y="130" width="218" height="5" fill="#0A0A0A" rx="2" opacity=".55"/>
+        <text x="372" y="126" font-size="7" fill="#555555" font-family="Plus Jakarta Sans" opacity=".5">Research velocity</text>
+      </svg>
+    </div>
+  </div>
+  </div><!-- /work-grid -->
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-head rv">
+    <div>
+      <p class="sk-label">03 · Skills &amp; Expertise</p>
+      <h2 class="sk-display">Craft &amp;<br><em>Capability</em></h2>
+      <p class="sk-body">A research practice built on quantitative behavioral measurement, longitudinal experience tracking, and mixed-methods design, spanning end-to-end programs in digital financial products.</p>
+    </div>
+    <blockquote class="sk-quote">Research that doesn't change how decisions are made isn't research, it's documentation.</blockquote>
+  </div>
+  <div class="skills-grid rv d1">
+    <div class="sg-col">
+      <p class="sg-head">Quantitative Methods</p>
+      <ul class="sg-list">
+        <li>Driver Analysis</li>
+        <li>Longitudinal NPS &amp; CSAT</li>
+        <li>Verbatim Text Mining</li>
+        <li>Behavioral Clustering</li>
+        <li>Experience Metrics Design</li>
+        <li>Survey Design &amp; Analysis</li>
+        <li>Competitive Benchmarking</li>
+      </ul>
+    </div>
+    <div class="sg-col">
+      <p class="sg-head">Qualitative &amp; Mixed</p>
+      <ul class="sg-list">
+        <li>Generative Qualitative</li>
+        <li>Evaluative Usability</li>
+        <li>Mixed Methods Design</li>
+        <li>Concept Testing</li>
+        <li>Diary Studies</li>
+        <li>Attitudinal Research</li>
+        <li>Affinity Synthesis</li>
+      </ul>
+    </div>
+    <div class="sg-col">
+      <p class="sg-head">AI &amp; Innovation</p>
+      <ul class="sg-list">
+        <li>AI-Augmented ResearchOps</li>
+        <li>Synthetic Persona Design</li>
+        <li>Knowledge Architecture</li>
+        <li>LLM Prompting Frameworks</li>
+        <li>Research Automation</li>
+        <li>Taxonomic System Design</li>
+      </ul>
+    </div>
+    <div class="sg-col">
+      <p class="sg-head">Strategy &amp; Influence</p>
+      <ul class="sg-list">
+        <li>Research Democratization</li>
+        <li>Executive Communication</li>
+        <li>Workshop Facilitation</li>
+        <li>Stakeholder Alignment</li>
+        <li>Hypothesis Formation</li>
+        <li>Insight Scaffolding</li>
+      </ul>
+    </div>
+    <div class="sg-col">
+      <p class="sg-head">Domain</p>
+      <ul class="sg-list">
+        <li>Digital Financial Products</li>
+        <li>Lending &amp; Credit Behavior</li>
+        <li>Consumer Finance Decisions</li>
+        <li>Behavioral Measurement</li>
+        <li>Mass Market Segments</li>
+        <li>Trust &amp; Risk Perception</li>
+      </ul>
+    </div>
+  </div>
+  <div class="skills-foot rv d2">
+    <span class="sf-label">Tools</span>
+    <div class="sf-pills"><span class="sfp">Figma</span><span class="sfp">FigJam</span><span class="sfp">Looker</span><span class="sfp">Databricks</span><span class="sfp">Maze</span><span class="sfp">Jira</span></div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section id="method">
+  <div class="method-head rv">
+    <div>
+      <p class="mh-label">04 · Research Approach</p>
+      <h2 class="mh-title">How I<br><em>Think</em></h2>
+    </div>
+    <div class="mh-bignum">06</div>
+  </div>
+  <div class="method-strips">
+    <div class="mstrip rv"><div class="ms-i">i</div><div class="ms-head"><p class="ms-title">Attitudinal &amp; Behavioral Triangulation</p><p class="ms-sub">Mixed Methods</p></div><div class="ms-body"><p>Stated preferences and observed behavior frequently diverge. I design studies that capture both, because the divergence is where the most consequential insight lives, not an anomaly to be averaged away.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><circle cx="38" cy="26" r="20" stroke="#BBBBBB" stroke-width=".8" fill="none" stroke-opacity=".4"/><circle cx="72" cy="26" r="20" stroke="#888888" stroke-width=".8" fill="none" stroke-opacity=".3"/><text x="22" y="29" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">attitudinal</text><text x="88" y="29" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">behavioral</text><text x="55" y="29" font-size="5.5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".65">insight</text></svg></div></div>
+    <div class="mstrip rv"><div class="ms-i">ii</div><div class="ms-head"><p class="ms-title">Upstream Research Positioning</p><p class="ms-sub">Strategic Influence</p></div><div class="ms-body"><p>Research positioned at validation arrives too late to shape the question. I work to embed research influence upstream, at hypothesis formation and opportunity definition, where it has the highest organizational leverage.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><line x1="8" y1="26" x2="100" y2="26" stroke="#BBBBBB" stroke-width=".5" stroke-opacity=".3"/><circle cx="8" cy="26" r="4" stroke="#BBBBBB" stroke-width=".7" fill="none" stroke-opacity=".35"/><circle cx="54" cy="26" r="8" stroke="#888888" stroke-width=".7" fill="#555555" fill-opacity=".06"/><circle cx="100" cy="26" r="13" stroke="#0A0A0A" stroke-width=".9" fill="#0A0A0A" fill-opacity=".07"/><text x="100" y="47" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">strategy</text></svg></div></div>
+    <div class="mstrip rv"><div class="ms-i">iii</div><div class="ms-head"><p class="ms-title">Compounding Knowledge Systems</p><p class="ms-sub">Research Operations</p></div><div class="ms-body"><p>Each study should build on what came before. I invest in the taxonomic and operational structures that make institutional knowledge accumulate, remain findable, and inform future work without requiring rediscovery.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><rect x="2" y="34" width="14" height="16" fill="#0A0A0A" fill-opacity=".08" rx="1"/><rect x="20" y="26" width="14" height="24" fill="#0A0A0A" fill-opacity=".1" rx="1"/><rect x="38" y="16" width="14" height="34" fill="#0A0A0A" fill-opacity=".14" rx="1"/><rect x="56" y="8" width="14" height="42" fill="#0A0A0A" fill-opacity=".12" rx="1"/><rect x="74" y="2" width="14" height="48" fill="#0A0A0A" fill-opacity=".16" rx="1"/><line x1="2" y1="50" x2="100" y2="50" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/></svg></div></div>
+    <div class="mstrip rv"><div class="ms-i">iv</div><div class="ms-head"><p class="ms-title">Governed AI Augmentation</p><p class="ms-sub">Methodological Integrity</p></div><div class="ms-body"><p>AI extends research capacity for synthesis, retrieval, and pattern recognition. I design AI-augmented workflows with explicit epistemic constraints that prevent synthetic signal from substituting for primary behavioral evidence.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><circle cx="55" cy="26" r="22" stroke="#BBBBBB" stroke-width=".4" fill="none" stroke-dasharray="2 4" stroke-opacity=".25"/><circle cx="55" cy="26" r="14" stroke="#888888" stroke-width=".7" fill="none" stroke-opacity=".35"/><circle cx="55" cy="26" r="7" fill="#0A0A0A" fill-opacity=".08" stroke="#0A0A0A" stroke-width=".8" stroke-opacity=".3"/><circle cx="55" cy="4" r="3" fill="#333333" fill-opacity=".6"/><circle cx="77" cy="40" r="3" fill="#333333" fill-opacity=".4"/><circle cx="33" cy="40" r="3" fill="#333333" fill-opacity=".3"/></svg></div></div>
+    <div class="mstrip rv"><div class="ms-i">v</div><div class="ms-head"><p class="ms-title">Cross-Functional Sensemaking</p><p class="ms-sub">Organizational Influence</p></div><div class="ms-body"><p>Research creates organizational value only when it changes how decisions are made across functions. I design stakeholder rituals and insight communication formats that ensure findings enter product, design, and business conversations.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><circle cx="55" cy="14" r="9" stroke="#0A0A0A" stroke-width=".8" fill="#0A0A0A" fill-opacity=".06"/><text x="55" y="17" font-size="5" fill="#0A0A0A" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Research</text><circle cx="20" cy="44" r="7" stroke="#BBBBBB" stroke-width=".6" fill="none" stroke-opacity=".4"/><text x="20" y="47" font-size="4.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Product</text><circle cx="55" cy="46" r="7" stroke="#BBBBBB" stroke-width=".6" fill="none" stroke-opacity=".4"/><text x="55" y="49" font-size="4.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Design</text><circle cx="90" cy="44" r="7" stroke="#BBBBBB" stroke-width=".6" fill="none" stroke-opacity=".4"/><text x="90" y="47" font-size="4.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">CX</text><line x1="48" y1="22" x2="25" y2="37" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/><line x1="55" y1="23" x2="55" y2="39" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/><line x1="62" y1="22" x2="85" y2="37" stroke="#BBBBBB" stroke-opacity=".15" stroke-width=".5"/></svg></div></div>
+    <div class="mstrip rv"><div class="ms-i">vi</div><div class="ms-head"><p class="ms-title">Behavioral Frameworks as Shared Language</p><p class="ms-sub">Synthesis &amp; Impact</p></div><div class="ms-body"><p>The highest-leverage research output is a durable mental model, experience principles, decision frameworks, attitudinal segments, that gives teams a shared conceptual vocabulary for customer-centered thinking beyond any single study.</p></div><div class="ms-vis"><svg viewBox="0 0 110 52" fill="none" style="width:90px"><rect x="8" y="2" width="94" height="48" stroke="#BBBBBB" stroke-width=".3" fill="none" stroke-opacity=".2" rx="2"/><rect x="8" y="2" width="47" height="24" stroke="#BBBBBB" stroke-width=".6" fill="#0A0A0A" fill-opacity=".04" rx="2"/><rect x="55" y="2" width="47" height="24" stroke="#BBBBBB" stroke-width=".6" fill="#0A0A0A" fill-opacity=".04" rx="2"/><rect x="8" y="26" width="47" height="24" stroke="#BBBBBB" stroke-width=".6" fill="#0A0A0A" fill-opacity=".04" rx="2"/><rect x="55" y="26" width="47" height="24" stroke="#BBBBBB" stroke-width=".6" fill="#333333" fill-opacity=".06" rx="2"/><text x="31.5" y="17" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".45">Attitude</text><text x="78.5" y="17" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">Behavior</text><text x="31.5" y="41" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".4">Context</text><text x="78.5" y="41" font-size="5.5" fill="#555555" font-family="Plus Jakarta Sans" text-anchor="middle" opacity=".5">Outcome</text></svg></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-l rv">
+    <div>
+      <p class="contact-label">05 · Contact</p>
+      <p class="contact-sub">Let's talk.</p>
+    </div>
+    <div class="contact-btns">
+      <a href="mailto:publi.eduardabarreto@gmail.com" class="cbtn cb-p">publi.eduardabarreto@gmail.com</a>
+      <a href="https://www.linkedin.com/in/eduarda-barreto-07a481132/?skipRedirect=true" target="_blank" class="cbtn cb-s">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="contact-r rv d1"></div>
+</section>
+
+<footer>
+  <span class="fl">Eduarda</span>
+  <span class="fr">© 2026</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="mov" onclick="handleOC(event)">
+  <div class="modal" id="modal">
+    <div class="modal-bar">
+      <span class="mb-tag" id="mb-tag">Case Study</span>
+      <button class="mb-close" onclick="closeModal()">← Back to work</button>
+    </div>
+    <div id="modal-area"></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
+});
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vs'); io.unobserve(e.target); }});
+}, { threshold: .06 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+function showTab(name) {
+  document.querySelectorAll('.jpanel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.jtab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+const P = [
+  { cat:'Qualitative Research · Decision-Making', title:'Mapping the Trust Topology of Secured Lending Journeys', role:'Lead Researcher', type:'Qualitative Research', org:'Leading Digital Financial Institution',
+    overview:'A leading digital financial institution was experiencing significant abandonment in secured credit flows among users who had already expressed intent to proceed. Funnel analytics mapped where; this research was commissioned to understand why, specifically the cognitive and attitudinal mechanisms driving abandonment at moments of apparent motivation.',
+    challenge:'The core problem was not navigational. Users were traversing the flow correctly but lacked the epistemic scaffolding to feel confident committing. The institutional language of credit, simulation, offer, approval, carried different semantic weight for users than for the organization. <strong>The friction was conceptual before it was functional.</strong>',
+    quote:'Users were not confused about how to proceed. They were uncertain whether it was safe to.',
+    approach:'I designed a two-phase study combining semi-structured depth interviews with concurrent think-aloud usability sessions, a deliberate attitudinal-behavioral triangulation intended to capture not just the failure points in the flow, but the reasoning structures users brought to those moments. Competitive benchmarking and heuristic journey analysis provided a structural baseline. Cross-functional synthesis workshops translated findings into testable product hypotheses.',
+    methods:['Depth Interviews','Concurrent Think-Aloud Usability','Behavioral Analysis','Competitive Benchmarking','Journey Deconstruction','Affinity Synthesis'],
+    insights:['Operational transparency was read as an institutional trust signal: process ambiguity was interpreted as institutional risk, not just inconvenience','Users systematically failed to distinguish simulation, offer, and formal approval as distinct states, generating commitment anxiety disproportionate to actual risk','Human support affordances, even when unused, materially increased perceived safety at high-stakes decision points','Perceived informedness and control consistently outweighed transaction speed as drivers of trust and confidence'],
+    impact:['Influenced flow architecture and UX writing redesign across the secured lending journey','Elevated communication improvements on the roadmap by framing them as trust infrastructure investments','Established trust signal criteria adopted as shared design principles across product teams','Catalyzed cross-functional alignment between Product, Design, Analytics, and CX around a shared behavioral model']
+  },
+  { cat:'Quantitative Behavioral Research · Experience Metrics', title:'Building an Experience Intelligence System from NPS and CSAT Signal', role:'Research & Insights Lead', type:'Quantitative Behavioral Research', org:'Leading Digital Financial Institution',
+    overview:'The organization had a mature NPS and CSAT data collection practice that was not functioning as strategic intelligence. Scores were reviewed and archived without generating product hypotheses, influencing prioritization, or informing communication decisions. The ambition was to rebuild the analytical architecture around behavioral driver analysis, not the dashboards.',
+    challenge:'Satisfaction scores without behavioral context are descriptive, not explanatory. They indicate the intensity of sentiment without identifying the experience moment that created it, the user segment most affected, or the product decision that could address it. <strong>The gap between data and action was architectural, not a tooling problem.</strong>',
+    quote:'The score was a symptom. The behavioral signal was buried in the verbatims, waiting to be measured.',
+    approach:'I restructured the analytical approach around quantitative driver analysis and journey-level behavioral attribution. Verbatim text mining surfaced the experience themes driving score variance. Behavioral clustering connected sentiment patterns to journey segments and user cohorts. Continuous tracking models exposed the intelligence in formats that supported hypothesis generation rather than retrospective reporting.',
+    methods:['Quantitative Driver Analysis','Longitudinal NPS & CSAT Analysis','Verbatim Text Mining','Behavioral Clustering','Journey-Level Attribution','Continuous Tracking Models'],
+    insights:['Communication quality, clarity at transition moments and transparency about next steps, was the primary statistical driver of satisfaction variance, outperforming operational performance metrics','Score deterioration concentrated in moments of process uncertainty: users uncertain about what had happened rated experiences significantly lower regardless of actual outcome','Trust perception operated as a leading indicator: users who felt informed during the process tolerated adverse outcomes better than users who felt uninformed during positive ones','Emotional response patterns were more predictive of churn risk than functional satisfaction scores across all measured cohorts'],
+    impact:['Repositioned experience metrics as a shared quantitative decision-support asset across leadership','Influenced UX and communication improvements across key journey segments, grounded in moment-level behavioral attribution','Improved cross-functional alignment between Product, CX, and Research around a shared measurement model of experience quality','Provided the behavioral evidentiary foundation for retention and trust improvement initiatives']
+  },
+  { cat:'AI for Research · Knowledge Architecture', title:'Designing a Scalable Research Knowledge Architecture with AI and Synthetic Personas', role:'Research Innovation Lead', type:'AI-Augmented Research Operations', org:'Global Digital Financial Company',
+    overview:'High-velocity research organizations accumulate a structural problem: institutional knowledge grows faster than institutional memory. Studies compound faster than they can be organized or retrieved. Teams rediscover findings. Behavioral patterns are restated rather than built upon. This project was commissioned to address that problem through knowledge architecture, not productivity tooling.',
+    challenge:'The challenge was simultaneously <strong>taxonomic, epistemological, and operational.</strong> Taxonomic: how do you index behavioral findings by decision moment rather than project date? Epistemological: how do you deploy generative AI in a research context without creating the illusion of primary evidence from synthetic sources? Operational: how do you build systems that practitioners will adopt under production pressure?',
+    quote:'The institutional knowledge already existed. The problem was that it had no address.',
+    approach:'I designed a behavioral-first insight taxonomy, organizing historical research by decision moment and user mental model rather than project chronology, and built LLM prompting frameworks enabling structured, query-driven retrieval of synthesized findings. Synthetic persona methodology was developed in parallel, with explicit governance protocols delimiting appropriate and inappropriate use cases.',
+    methods:['Knowledge Architecture Design','Behavioral Insight Taxonomy','LLM Prompting Framework Development','Synthetic Persona Methodology','AI Workflow Design','Stakeholder Co-design'],
+    insights:['Researchers retrieved historical insights significantly faster when taxonomy was organized by behavioral theme and decision moment rather than project title or date','Synthetic personas demonstrated genuine exploratory value as hypothesis-generation instruments, but required explicit governance to prevent misuse as substitutes for primary evidence','AI-augmented synthesis workflows were highly sensitive to prompting architecture: output precision improved substantially with structured frameworks','Teams with faster access to historical research produced more refined and falsifiable product hypotheses'],
+    impact:['Reduced mean time-to-insight-retrieval for historical research across product squads','Increased research reuse rate and knowledge compounding across the organization','Established a governed AI-for-research framework that expanded AI adoption without compromising methodological standards','Strengthened the research-driven decision culture by making accumulated behavioral knowledge accessible and queryable']
+  },
+  { cat:'Consumer Behavior · Attitudinal Segmentation', title:'Financial Trust Formation Across Mass Market Consumer Segments', role:'Consumer Insights Researcher', type:'Consumer Behavior Research', org:'Financial Services Company',
+    overview:'A financial services organization needed to understand, at a structural level, how mass market consumers form relationships with financial institutions: what generates trust, what erodes it, and how those dynamics vary measurably across income segments. The research question was not what features users preferred, but what attitudinal and behavioral conditions made product engagement possible.',
+    challenge:'Standard product research tends to treat financial decision-making as rational optimization. For mass market consumers operating with limited financial slack, <strong>financial decisions are experienced as risk events, not opportunity events.</strong> The research design had to surface and measure the affective architecture beneath stated preferences: the anxiety, the protective avoidance, the aspirational identification.',
+    quote:'Financial trust, for mass market consumers, is built through the consistent reduction of felt exposure, not product features.',
+    approach:'I designed an immersive generative program combining longitudinal depth interviews with attitudinal measurement studies and structured concept testing across income cohorts. The analytical focus was on the behavioral logic underlying product choices and avoidance, rather than rationalized stated preferences. Cross-segment comparative analysis surfaced the structural differences in trust formation mechanisms across socioeconomic groups.',
+    methods:['Longitudinal Depth Interviews','Attitudinal Measurement Studies','Concept Testing','Attitudinal Segmentation','Cross-Segment Comparative Analysis','Behavioral Logic Mapping'],
+    insights:['Mass market consumers consistently prioritized predictability and felt stability over product sophistication: novelty read as institutional unreliability when financial margin was low','Financial terminology operated as an epistemic access barrier even when users understood the underlying concept','Progress narratives, the affective experience of moving forward financially, were the most powerful brand differentiation mechanism','Communication complexity was a reliable proxy for institutional risk perception: comprehension burden reliably predicted lower hiring intention'],
+    impact:['Informed a comprehensive revision of communication strategy and product experience design for mass market audiences','Supported evidence-based positioning revisions grounded in behavioral segmentation rather than assumed demographic proxies','Deepened organizational understanding of financial decision-making psychology across socioeconomic segments','Delivered behavioral frameworks that shaped subsequent concept development and creative communication work']
+  },
+  { cat:'Behavioral Research · Experience Principles', title:'Defining Behaviorally-Grounded Experience Principles for a Digital Financial Ecosystem', role:'Researcher', type:'Strategic Research', org:'Global Digital Financial Company',
+    overview:'As the organization scaled, experience quality across journeys began to diverge, not because design standards were absent, but because they were abstract. Teams shared vocabulary (simplicity, clarity, trust) but not behavioral referents. This research was commissioned to ground that vocabulary in quantitative and qualitative behavioral evidence.',
+    challenge:'The design challenge was translating accumulated behavioral research into <strong>durable, operationalizable principles</strong> that function as design criteria rather than design aspirations. "Simplicity" is inert as a principle until you can specify what it means when a user is making an irreversible financial commitment. That specificity had to derive from measured behavioral data, not design convention.',
+    quote:'Simplicity, for users in high-stakes financial moments, was not fewer steps. It was the reduction of felt exposure: having enough information to proceed without feeling at risk.',
+    approach:'I designed a qualitative study focused specifically on experience perception, how users constructed their sense of a moment as "simple," "clear," or "trustworthy," and connected those constructions to specific interaction properties. Cross-product synthesis and historical research review identified patterns that held across journey contexts. Collaborative workshops with design, product, and content stakeholders translated findings into operationalizable principle statements.',
+    methods:['Depth Interviews on Experience Perception','Cross-Product Behavioral Synthesis','Historical Research Review','Principle Development Workshops','Stakeholder Alignment Sessions'],
+    insights:['Users defined experiential simplicity as the reduction of felt uncertainty: a flow with more steps felt simpler than one with fewer if it maintained informedness throughout','Perceived control and agency were the primary mechanisms through which users converted complex experiences into trustworthy ones','Micro-level communication choices had disproportionate impact on affective brand experience relative to their apparent informational weight','The absence of transparency at a single high-stakes moment could negate positive experience accumulated across an entire prior journey'],
+    impact:['Produced experience principles adopted across multiple product squads as shared design evaluation criteria','Elevated UX, content, and product prioritization decisions by providing behavioral grounding for experience quality judgments','Increased experience consistency across digital products by giving distributed teams a shared behavioral language','Strengthened the customer-centered design culture by anchoring design discourse in empirical behavioral evidence']
+  },
+  { cat:'Research Operations · Organizational Design', title:'Scaling Research Infrastructure Across a Multi-Squad Product Organization', role:'ResearchOps Lead', type:'Research Operations', org:'Leading Digital Financial Institution',
+    overview:'A rapidly scaling research function had accumulated significant operational debt: fragmented knowledge management, inconsistent synthesis standards, limited visibility into existing research across squads, and duplicated effort. The function required operational infrastructure capable of scaling with the organization without sacrificing analytical depth or stakeholder proximity.',
+    challenge:'The structural tension was between <strong>operational velocity and epistemic quality.</strong> Organizational pressure created incentives for faster, lighter research. The design challenge was building systems that measurably increased throughput without incentivizing methodological shortcuts or eroding the stakeholder proximity that kept research strategically relevant.',
+    quote:'Insights do not age. They become inaccessible. Those are different problems requiring different solutions.',
+    approach:'I mapped the existing operational landscape to identify where debt was accumulating, then designed interventions at three layers: knowledge architecture (behavioral taxonomies, insight repositories, indexing protocols), process (synthesis standards, documentation templates, review workflows), and collaboration (stakeholder rituals, cross-squad knowledge-sharing formats, insight accessibility practices).',
+    methods:['Operational Landscape Mapping','Knowledge Architecture Design','Behavioral Insight Taxonomy','Synthesis Standards Definition','Cross-functional Ritual Design','Stakeholder Accessibility Frameworks'],
+    insights:['Insights disconnected from their originating business context rapidly lost stakeholder resonance and were not acted upon even when technically accessible','Research reuse increased substantially when materials were organized by behavioral theme rather than study chronology','Sustained stakeholder proximity improved the strategic quality of incoming research requests','Operational infrastructure reduced rework and accelerated time-to-insight, but its primary strategic value was the accumulation of compounding institutional behavioral knowledge'],
+    impact:['Improved discoverability and accessibility of historical research across product squads','Increased research reuse rate and reduced duplicated effort across teams','Strengthened the strategic quality of incoming research requests through improved stakeholder proximity','Established synthesis and documentation standards that increase the long-term organizational value of research outputs','Built a knowledge governance model that supports ongoing research democratization']
+  }
+];
+
+function openModal(i) {
+  const p = P[i];
+  document.getElementById('mb-tag').textContent = `0${i+1} of 06 · ${p.type}`;
+  document.getElementById('modal-area').innerHTML = `
+    <div class="modal-hero">
+      <p class="mh-cat">${p.cat}</p>
+      <h2 class="modal-title">${p.title}</h2>
+      <div class="mh-grid">
+        <div class="mh-overview"><p>${p.overview}</p></div>
+        <div class="mh-meta">
+          <div><p class="mm-label">Role</p><p class="mm-value">${p.role}</p></div>
+          <div><p class="mm-label">Research Type</p><p class="mm-value">${p.type}</p></div>
+          <div><p class="mm-label">Organization</p><p class="mm-value">${p.org}</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="ms-section"><p class="ms-label">The Research Problem</p><p>${p.challenge}</p></div>
+      <div class="modal-pullquote"><p>${p.quote}</p><cite>Key Finding</cite></div>
+      <div class="ms-section"><p class="ms-label">Research Approach</p><p>${p.approach}</p><div class="modal-chips">${p.methods.map(m=>`<span class="mchip">${m}</span>`).join('')}</div></div>
+      <div class="ms-section"><p class="ms-label">Key Findings</p><div class="insights-grid">${p.insights.map(ins=>`<div class="ins-tile"><p>${ins}</p></div>`).join('')}</div></div>
+      <div class="ms-section"><p class="ms-label">Strategic Impact</p><div class="impact-rows">${p.impact.map(imp=>`<div class="imp-row"><span class="imp-arr">↗</span><p>${imp}</p></div>`).join('')}</div></div>
+    </div>`;
+  document.getElementById('mov').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal').scrollTop = 0;
+}
+function closeModal() { document.getElementById('mov').classList.remove('open'); document.body.style.overflow = ''; }
+function handleOC(e) { if (e.target === document.getElementById('mov')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
